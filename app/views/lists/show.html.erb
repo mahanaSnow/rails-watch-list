@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="text-center"><%= @list.name %></h1>
+
+  <div class="bookmarks">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="bookmark">
+        <p><%= bookmark.movie.title %> - <%= bookmark.comment %></p>
+          <%= button_to 'Delete Bookmark', bookmark_path(bookmark), method: :delete %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Ajouter un lien pour créer un nouveau bookmark -->
+  <%= link_to 'Add Bookmark', new_list_bookmark_path(@list) %>
+  <%= link_to 'retourner a ma lise', lists_path %>
+
+  <!-- Autres détails de la liste -->
+</div>

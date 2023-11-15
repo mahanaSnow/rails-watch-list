@@ -1,0 +1,12 @@
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, collection: Movie.all, prompt: "Choose a movie" %>
+  <%= f.input :comment %>
+  <%= f.button :submit %>
+<% end %>
+<hr>
+<% @list.bookmarks.each do |bookmark| %>
+  <div>
+    <%= bookmark.movie.title %>
+    <%= link_to 'Delete', bookmark_path(bookmark), method: :delete %>
+  </div>
+<% end %>
