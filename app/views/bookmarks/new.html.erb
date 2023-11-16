@@ -1,12 +1,15 @@
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.association :movie, collection: Movie.all, prompt: "Choose a movie" %>
-  <%= f.input :comment %>
-  <%= f.button :submit %>
-<% end %>
-<hr>
-<% @list.bookmarks.each do |bookmark| %>
-  <div>
-    <%= bookmark.movie.title %>
-    <%= link_to 'Delete', bookmark_path(bookmark), method: :delete %>
+<div class="container my-5">
+  <div class="form-wrapper">
+    <%= simple_form_for [@list, @bookmark], html: { class: 'form-custom' } do |f| %>
+      <div class="mb-3">
+        <%= f.association :movie, collection: Movie.all, prompt: "Choose a movie", input_html: { class: 'form-select custom-select' } %>
+      </div>
+      <div class="mb-3">
+        <%= f.input :comment, input_html: { class: 'form-control' }, placeholder: 'Add a comment...' %>
+      </div>
+      <div class="text-center">
+        <%= f.button :submit, 'Add Bookmark', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
